@@ -55,17 +55,16 @@ android {
             minifyEnabled false
             zipAlignEnabled false
             shrinkResources false
-            signingConfig signingConfigs.debug
         }
         release {
             // 不显示Log
-            buildConfigField "boolean", "LOG_DEBUG", "false"
+            buildConfigField "boolean", "LOG_DEBUG", "true"
             //混淆
-            minifyEnabled true
+            minifyEnabled false
             //Zipalign优化
             zipAlignEnabled true
             // 移除无用的resource文件
-            shrinkResources true
+            shrinkResources false
             //前一部分代表系统默认的android程序的混淆文件，该文件已经包含了基本的混淆声明
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
@@ -100,7 +99,7 @@ dependencies {
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.jakewharton:butterknife:8.4.0'
     compile 'cn.bmob.android:bmob-sdk:3.5.0'
+    compile 'org.greenrobot:eventbus:3.0.0'
     testCompile 'junit:junit:4.12'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
-    compile 'org.greenrobot:eventbus:3.0.0'
 }

@@ -23,4 +23,9 @@
         <item name="@android:windowEnterAnimation">@anim/slide_from_bottom</item>
         <item name="@android:windowExitAnimation">@anim/slide_out_bottom</item>
     </style>
+
+    <!-- 启动页主题 -->
+    <style name="SplashTheme" parent="@style/Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@drawable/community_start_window_icon</item>
+    </style>
 </resources>
