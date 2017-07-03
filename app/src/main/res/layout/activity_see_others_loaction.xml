@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="@mipmap/bg">
+
+    <LinearLayout
+        android:id="@+id/llMainActivitySend"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginTop="32dp"
+        android:orientation="horizontal">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/ivSeeOthersLocationActivityBack"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:src="@mipmap/icon_back"
+                android:padding="16dp"
+                android:clickable="true"
+                android:scaleType="fitXY" />
+            <EditText
+                android:id="@+id/edtSeeOthersLocationActivity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="60dp"
+                android:layout_marginRight="90dp"
+                android:textSize="14sp"
+                android:background="@drawable/search_bg"
+                android:layout_marginTop="10dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:digits="1234567890"
+                android:singleLine="true"
+                android:hint="请输入要查询的用户的ID"
+                android:gravity="center"
+                android:textColorHint="@color/yellow87"
+                android:textColor="@color/yellow87" />
+
+            <TextView
+                android:id="@+id/tvSeeOthersLocationActivityChaXun"
+                android:layout_width="56dp"
+                android:layout_height="32dp"
+                android:text="查询"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="13dp"
+                android:textSize="14sp"
+                android:clickable="true"
+                android:gravity="center"
+                android:background="@color/yellow87"
+                android:textColor="@color/white" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/lvSeeOthersLocationActivityResult"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/llMainActivitySend">
+
+    </ListView>
+
+
+</RelativeLayout>

@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/bg"
+    android:orientation="vertical">
+
+    <!--抽屉外面的部分-->
+    <android.support.v7.widget.Toolbar
+        android:id="@id/barTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:contentInsetStart="0dp">
+
+        <RelativeLayout
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:minHeight="56dp">
+
+            <FrameLayout
+                android:id="@+id/flAboutOurActivityBack"
+                style="@style/TouchEventStyle"
+                android:clickable="true">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/icon_back" />
+            </FrameLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="60dp"
+                android:text="实时定位系统"
+                android:textColor="@color/yellow87"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <com.example.json.dingwei.view.MarqueeTextView
+                android:id="@+id/ivAboutOurActivityUserID"
+                android:layout_width="56dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="60dp"
+                android:layout_marginRight="16dp"
+                android:gravity="center"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:text="UserID"
+                android:textColor="@color/yellow87"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.Toolbar>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:gravity="center_horizontal"
+        android:text="感谢使用此款APP"
+        android:textColor="#ffff"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
+    <com.example.json.dingwei.view.MarqueeTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginTop="30dp"
+        android:gravity="center_horizontal"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:text="使用过程中如果想查看云端位置信息或者其他有任何问题可以随时联系我们"
+        android:textColor="#ffff"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:gravity="center_horizontal"
+        android:text="QQ:2281234263"
+        android:textColor="#ffff"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:gravity="center_horizontal"
+        android:text="实时定位系统QQ群: 652594747"
+        android:textColor="#ffff"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:gravity="center_horizontal"
+        android:text="邮箱:2281234263@qq.com"
+        android:textColor="#ffff"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
+    <com.example.json.dingwei.view.MarqueeTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginTop="30dp"
+        android:gravity="center_horizontal"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:text="非常期待大家能够提供建议，我们定会虚心采纳，及时修改实时定位系统，让我们的实时定位系统做的更好，能够更好的服务于大家，方便大家，再次感谢！！！！"
+        android:textColor="#ffff"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
+</LinearLayout>
+
+

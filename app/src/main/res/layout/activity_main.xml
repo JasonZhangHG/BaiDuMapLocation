@@ -1,31 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@mipmap/bg"
     android:orientation="vertical">
 
-    <Button
-        android:id="@+id/btnMainActivityShare"
-        android:layout_width="wrap_content"
-        android:layout_height="56dp"
-        android:layout_gravity="center"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="80dp"
-        android:padding="15dp"
-        android:background="@drawable/new_card"
-        android:clickable="true"
-        android:gravity="center"
-        android:text="点击分享当前位置" />
+    <!--抽屉外面的部分-->
+    <android.support.v7.widget.Toolbar
+        android:id="@id/barTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:contentInsetStart="0dp">
+
+        <RelativeLayout
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:minHeight="56dp">
+
+            <FrameLayout
+                android:id="@+id/flMainActivityMenu"
+                style="@style/TouchEventStyle"
+                android:clickable="true">
+
+                <ImageView
+                    android:id="@+id/ivMainActivityMenu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/community_icon_menu_nor_gules" />
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/ivMainActivityLogo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="60dp"
+                android:text="实时定位系统"
+                android:textColor="@color/yellow87"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/ivMainActivityUserID"
+                android:layout_width="56dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="60dp"
+                android:text="UserID"
+                android:textColor="@color/yellow87"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:layout_marginRight="16dp"
+                android:ellipsize="marquee"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:gravity="center"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:singleLine="true" />
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.Toolbar>
 
 
     <TextView
         android:id="@+id/tvMainAddress"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:textStyle="bold"
+        android:gravity="center"
         android:textColor="#ffff"
         android:textSize="15sp"
-        android:gravity="center" />
+        android:textStyle="bold" />
 </LinearLayout>

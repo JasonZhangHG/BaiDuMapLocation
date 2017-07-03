@@ -1,15 +1,23 @@
 package com.example.json.dingwei;
 
+import android.icu.text.BreakIterator;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
+import android.support.design.widget.NavigationView;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.View;
-import android.widget.Button;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
+import com.example.json.dingwei.base.BaseActivity;
+import com.example.json.dingwei.constants.ConstKey;
+import com.example.json.dingwei.utils.PreferenceUtil;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -20,25 +28,42 @@ import butterknife.ButterKnife;
 import cn.bmob.v3.Bmob;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     @BindView(R.id.tvMainAddress)
     TextView tvMainAddress;
-    @BindView(R.id.btnMainActivityShare)
-    Button btnMainActivityShare;
+    @BindView(R.id.ivMainActivityMenu)
+    ImageView ivMainActivityMenu;
+    @BindView(R.id.flMainActivityMenu)
+    FrameLayout flMainActivityMenu;
+    @BindView(R.id.title)
+    RelativeLayout title;
+    @BindView(R.id.barTitle)
+    Toolbar barTitle;
+    @BindView(R.id.ivMainActivityUserID)
+    TextView ivMainActivityUserID;
+
+    private View headView;
 
     public LocationClient mLocationClient;
     public MyLocationListener myListener;
+    @BindView(R.id.nvMainActivity)
+    NavigationView nvMainActivity;
+    @BindView(R.id.dlMain)
+    DrawerLayout dlMain;
+
     private WeiZhiBean weiZhiBeanMain;
     private long firstBack = -1;
+    private long userID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main_drawer_layout);
         ButterKnife.bind(this);
+        initHeadView();
         //第一：默认初始化
-        Bmob.initialize(this, "19fb1a7ca34b632c3d283aebc5e14864");
+        Bmob.initialize(this, "cab28c292ccada5f6a9740d5cdb32f77");
         // requestWindowFeature(Window.FEATURE_NO_TITLE);
         EventBus.getDefault().register(this);
         myListener = new MyLocationListener();
@@ -47,25 +72,20 @@ public class MainActivity extends AppCompatActivity {
         mLocationClient.registerLocationListener(myListener);
         //注册监听函数
         initLocation();
+    }
 
-        btnMainActivityShare.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (weiZhiBeanMain!=null){
-                    Log.i("aaa","weiZhiBeanMain   "+weiZhiBeanMain.toString());
-                    AndroidShare as = new AndroidShare(
-                            MainActivity.this,
-                            "定位方式"+weiZhiBeanMain.getNetKind()
-                                    + "\n\n经度为：" + weiZhiBeanMain.getLongitude()
-                                    + "\n\n纬度为：" + weiZhiBeanMain.getLatitude()
-                                    + "\n\n定位时间：" + weiZhiBeanMain.getTime()
-                                    + "\n\n当前位置为：" + weiZhiBeanMain.getAddress()
-                                    + "\n\n 附近标志物：" + weiZhiBeanMain.getLocationDescribe().toString(), "");
-                    as.show();
-                }
+    public void initHeadView() {
+        headView = nvMainActivity.inflateHeaderView(R.layout.main_activity_drawerlayout_header_layout);
+        flMainActivityMenu.setOnClickListener(this);
 
-            }
-        });
+        headView.findViewById(R.id.llMainDrawerShareMyLocation).setOnClickListener(this);
+        headView.findViewById(R.id.llMainDrawerSeeOthersLocation).setOnClickListener(this);
+        headView.findViewById(R.id.llMainDrawerUpdateVersion).setOnClickListener(this);
+        headView.findViewById(R.id.llMainDrawerConnectUs).setOnClickListener(this);
+
+        userID = PreferenceUtil.getInstance().getLong(ConstKey.KEY_LAST_LOGIN_TIME);
+        ivMainActivityUserID.setText("用户编号为："+userID);
+
     }
 
     private void initLocation() {
@@ -118,7 +138,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void getEventBusData(WeiZhiBean weiZhiBean){
+    public void getEventBusData(WeiZhiBean weiZhiBean) {
         weiZhiBeanMain = weiZhiBean;
         tvMainAddress.setText(weiZhiBean.getNetKind() + "\n\n经度为：" + weiZhiBean.getLongitude() + "\n\n纬度为：" + weiZhiBean.getLatitude() + "\n\n定位时间：" + weiZhiBean.getTime() + "\n\n当前位置为：" + weiZhiBean.getAddress()
                 + "\n\n 附近标志物：" + weiZhiBean.getLocationDescribe().toString());
@@ -128,12 +148,79 @@ public class MainActivity extends AppCompatActivity {
     public void onBackPressed() {
 
         if (System.currentTimeMillis() - firstBack < 2000) {
-                super.onBackPressed();
-            } else {
-                firstBack = System.currentTimeMillis();
-                Toast.makeText(MainActivity.this,"亲,再按一次就退出定位系统了！！！",Toast.LENGTH_SHORT).show();
-            }
+            super.onBackPressed();
+        } else {
+            firstBack = System.currentTimeMillis();
+            Toast.makeText(MainActivity.this, "亲,再按一次就退出定位系统了！！！", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private void openDrawer() {
+        //打开抽屉
+        if (!isDrawerOpen()) {
+            dlMain.openDrawer(Gravity.LEFT);
+        }
+    }
+
+    private void closeDrawer() {
+        doInUI(new Runnable() {
+            @Override
+            public void run() {
+                //关闭抽屉
+                if (isDrawerOpen()) {
+                    dlMain.closeDrawer(Gravity.LEFT);
+                    dlMain.closeDrawers();
+                }
+            }
+        }, 500);
+    }
+
+    private boolean isDrawerOpen() {
+        return dlMain.isDrawerOpen(Gravity.LEFT);
+    }
 
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            //点击左上角menu 打开抽屉
+            case R.id.flMainActivityMenu:
+                openDrawer();
+                break;
+            //分享当前位置
+            case R.id.llMainDrawerShareMyLocation:
+                shareMyLocation();
+                closeDrawer();
+                break;
+            //查看其他用户的地址
+            case R.id.llMainDrawerSeeOthersLocation:
+              toActivity(SeeOthersLocationActivity.class);
+                closeDrawer();
+                break;
+            //版本升级
+            case R.id.llMainDrawerUpdateVersion:
+
+                break;
+            //联系我们
+            case R.id.llMainDrawerConnectUs:
+             toActivity(AboutOurActivity.class);
+                closeDrawer();
+                break;
+
+        }
+    }
+
+    public void shareMyLocation() {
+        if (weiZhiBeanMain != null) {
+            AndroidShare as = new AndroidShare(
+                    MainActivity.this,
+                    "定位方式" + weiZhiBeanMain.getNetKind()
+                            + "\n\n经度为：" + weiZhiBeanMain.getLongitude()
+                            + "\n\n纬度为：" + weiZhiBeanMain.getLatitude()
+                            + "\n\n定位时间：" + weiZhiBeanMain.getTime()
+                            + "\n\n当前位置为：" + weiZhiBeanMain.getAddress()
+                            + "\n\n 附近标志物：" + weiZhiBeanMain.getLocationDescribe().toString(), "");
+            as.show();
+        }
+    }
 }

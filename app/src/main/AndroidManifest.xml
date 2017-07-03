@@ -24,13 +24,15 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
+        android:name=".base.BaseApplication"
         android:allowBackup="true"
         android:icon="@mipmap/logo"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".WelcomeActivity"
+        <activity
+            android:name=".WelcomeActivity"
             android:screenOrientation="portrait"
             android:theme="@style/SplashTheme">
             <intent-filter>
@@ -39,6 +41,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".MainActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".Login"
+            android:screenOrientation="portrait" />
+        <activity android:name=".SeeOthersLocationActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".AboutOurActivity"
+            android:screenOrientation="portrait" />
 
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
@@ -53,7 +64,7 @@
             android:name="UMENG_CHANNEL"
             android:value="${UMENG_CHANNEL_VALUE}" />
 
-        <activity android:name=".MainActivity"></activity>
+
     </application>
 
 </manifest>

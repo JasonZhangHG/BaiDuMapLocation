@@ -77,9 +77,7 @@ public class MyLocationListener implements BDLocationListener {
                 @Override
                 public void done(String objectId, BmobException e) {
                     if (e == null) {
-                        Log.i("aaa", "GPS定位结果 添加数据成功，返回objectId为：" + objectId);
                     } else {
-                        Log.i("aaa", "GPS定位结果 创建数据失败：" + e.getMessage());
                     }
                 }
             });
@@ -109,9 +107,7 @@ public class MyLocationListener implements BDLocationListener {
                 @Override
                 public void done(String objectId, BmobException e) {
                     if (e == null) {
-                        Log.i("aaa", "GPS定位结果 添加数据成功，返回objectId为：" + objectId);
                     } else {
-                        Log.i("aaa", "GPS定位结果 创建数据失败：" + e.getMessage());
                     }
                 }
             });
@@ -152,8 +148,6 @@ public class MyLocationListener implements BDLocationListener {
                 sb.append(p.getId() + " " + p.getName() + " " + p.getRank());
             }
         }
-
-        Log.i("aaa", "BaiduLocationApiDem" + sb.toString());
     }
 
     //返回当前的时间

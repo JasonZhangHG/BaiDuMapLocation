@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/tvItemUserNumber"
+        android:textSize="14dp"
+        android:textStyle="bold"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:text="用户编号：" />
+    <TextView
+        android:id="@+id/tvItemNetKind"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="网络获取方式："
+        android:layout_marginTop="10dp"
+        android:textSize="14dp"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:layout_marginLeft="10dp" />
+    <TextView
+        android:id="@+id/tvItemTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:textSize="14dp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:text="定位时间" />
+
+    <TextView
+        android:id="@+id/tvItemLongitude"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:textSize="14dp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:text="经度" />
+
+    <TextView
+        android:id="@+id/tvItemLatitude"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:textSize="14dp"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:text="纬度：" />
+    <TextView
+        android:id="@+id/tvItemAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:textSize="14dp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:text="位置" />
+    <TextView
+        android:id="@+id/tvItemLocationDescribe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:textSize="14dp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:text="附近标志物" />
+
+
+
+
+</LinearLayout>

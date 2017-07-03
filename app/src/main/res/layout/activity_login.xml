@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/yellow87">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/app_name"
+            android:textColor="@color/white"
+            android:textSize="18sp"/>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:orientation="vertical"
+        android:paddingTop="100dp">
+
+        <EditText
+            android:id="@+id/edtLoginActivity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:digits="1234567890"
+            android:hint="请给自己添加一个用户编号(注：必须为数字)"
+            android:textColorHint="@color/yellow87"
+            android:inputType=""
+            android:paddingLeft="10dp"
+            android:singleLine="true"
+            android:textSize="15sp"/>
+
+        <TextView
+            android:id="@+id/tvLoginActivityLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/selector_bottom_text_next"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="登陆"
+            android:textColor="@color/white"/>
+    </LinearLayout>
+
+</LinearLayout>
