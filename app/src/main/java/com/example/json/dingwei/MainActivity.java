@@ -55,13 +55,12 @@ public class MainActivity extends AppCompatActivity {
                     Log.i("aaa","weiZhiBeanMain   "+weiZhiBeanMain.toString());
                     AndroidShare as = new AndroidShare(
                             MainActivity.this,
-                            "分享当前位置",
                             "定位方式"+weiZhiBeanMain.getNetKind()
                                     + "\n\n经度为：" + weiZhiBeanMain.getLongitude()
                                     + "\n\n纬度为：" + weiZhiBeanMain.getLatitude()
                                     + "\n\n定位时间：" + weiZhiBeanMain.getTime()
                                     + "\n\n当前位置为：" + weiZhiBeanMain.getAddress()
-                                    + "\n\n 附近标志物：" + weiZhiBeanMain.getLocationDescribe().toString());
+                                    + "\n\n 附近标志物：" + weiZhiBeanMain.getLocationDescribe().toString(), "");
                     as.show();
                 }
 
