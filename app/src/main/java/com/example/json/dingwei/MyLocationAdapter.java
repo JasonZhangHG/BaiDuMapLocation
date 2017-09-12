@@ -17,11 +17,11 @@ import butterknife.ButterKnife;
 
 public class MyLocationAdapter extends BaseAdapter {
 
-    private List<WeiZhiBean> dbUserInvestmentList = new ArrayList<>();
+    private List<Local> dbUserInvestmentList = new ArrayList<>();
     private LayoutInflater inflater;
     private MyVidewHolder myViewHolder;
 
-    public MyLocationAdapter(List<WeiZhiBean> dbUserInvestmentList, Context context) {
+    public MyLocationAdapter(List<Local> dbUserInvestmentList, Context context) {
         this.dbUserInvestmentList = dbUserInvestmentList;
         inflater = LayoutInflater.from(context);
     }

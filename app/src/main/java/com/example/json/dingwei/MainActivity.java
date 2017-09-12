@@ -1,10 +1,11 @@
 package com.example.json.dingwei;
 
-import android.icu.text.BreakIterator;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.Toolbar;
+import android.telephony.TelephonyManager;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -16,8 +17,6 @@ import android.widget.Toast;
 import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
 import com.example.json.dingwei.base.BaseActivity;
-import com.example.json.dingwei.constants.ConstKey;
-import com.example.json.dingwei.utils.PreferenceUtil;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -26,35 +25,28 @@ import org.greenrobot.eventbus.ThreadMode;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.bmob.v3.Bmob;
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.SaveListener;
 
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
 
-    @BindView(R.id.tvMainAddress)
-    TextView tvMainAddress;
-    @BindView(R.id.ivMainActivityMenu)
-    ImageView ivMainActivityMenu;
-    @BindView(R.id.flMainActivityMenu)
-    FrameLayout flMainActivityMenu;
-    @BindView(R.id.title)
-    RelativeLayout title;
-    @BindView(R.id.barTitle)
-    Toolbar barTitle;
-    @BindView(R.id.ivMainActivityUserID)
-    TextView ivMainActivityUserID;
+    @BindView(R.id.tvMainAddress) TextView tvMainAddress;
+    @BindView(R.id.ivMainActivityMenu) ImageView ivMainActivityMenu;
+    @BindView(R.id.flMainActivityMenu) FrameLayout flMainActivityMenu;
+    @BindView(R.id.title) RelativeLayout title;
+    @BindView(R.id.barTitle) Toolbar barTitle;
+    @BindView(R.id.ivMainActivityUserID) TextView ivMainActivityUserID;
 
     private View headView;
 
     public LocationClient mLocationClient;
     public MyLocationListener myListener;
-    @BindView(R.id.nvMainActivity)
-    NavigationView nvMainActivity;
-    @BindView(R.id.dlMain)
-    DrawerLayout dlMain;
+    @BindView(R.id.nvMainActivity) NavigationView nvMainActivity;
+    @BindView(R.id.dlMain) DrawerLayout dlMain;
 
     private WeiZhiBean weiZhiBeanMain;
     private long firstBack = -1;
-    private long userID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +55,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         ButterKnife.bind(this);
         initHeadView();
         //第一：默认初始化
-        Bmob.initialize(this, "cab28c292ccada5f6a9740d5cdb32f77");
+        Bmob.initialize(this, "19fb1a7ca34b632c3d283aebc5e14864");
         // requestWindowFeature(Window.FEATURE_NO_TITLE);
         EventBus.getDefault().register(this);
         myListener = new MyLocationListener();
@@ -82,9 +74,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         headView.findViewById(R.id.llMainDrawerSeeOthersLocation).setOnClickListener(this);
         headView.findViewById(R.id.llMainDrawerUpdateVersion).setOnClickListener(this);
         headView.findViewById(R.id.llMainDrawerConnectUs).setOnClickListener(this);
-
-        userID = PreferenceUtil.getInstance().getLong(ConstKey.KEY_LAST_LOGIN_TIME);
-        ivMainActivityUserID.setText("用户编号为："+userID);
+        ivMainActivityUserID.setText("用户编号为：" + getNativePhoneNumber());
 
     }
 
@@ -140,8 +130,25 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void getEventBusData(WeiZhiBean weiZhiBean) {
         weiZhiBeanMain = weiZhiBean;
-        tvMainAddress.setText(weiZhiBean.getNetKind() + "\n\n经度为：" + weiZhiBean.getLongitude() + "\n\n纬度为：" + weiZhiBean.getLatitude() + "\n\n定位时间：" + weiZhiBean.getTime() + "\n\n当前位置为：" + weiZhiBean.getAddress()
-                + "\n\n 附近标志物：" + weiZhiBean.getLocationDescribe().toString());
+        tvMainAddress.setText(weiZhiBean.getNetKind() + "\n\n经度为：" + weiZhiBean.getLongitude() + "\n\n纬度为：" + weiZhiBean.getLatitude() + "\n\n定位时间：" + weiZhiBean.getTime() + "\n\n当前位置为：" + weiZhiBean.getAddress() + "\n\n 附近标志物：" + weiZhiBean.getLocationDescribe().toString());
+        Local local = new Local();
+        local.setUserID(getNativePhoneNumber());
+        local.setNetKind(weiZhiBean.getNetKind());
+        local.setTime(weiZhiBean.getTime());
+        local.setAddress(weiZhiBean.getAddress());
+        local.setLocationDescribe(weiZhiBean.getLocationDescribe());
+        local.setLongitude(weiZhiBean.getLongitude());
+        local.setLatitude(weiZhiBean.getLatitude());
+
+        local.save(new SaveListener<String>() {
+            @Override
+            public void done(String objectId, BmobException e) {
+                if (e == null) {
+                } else {
+                }
+            }
+        });
+
     }
 
     @Override
@@ -194,7 +201,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 break;
             //查看其他用户的地址
             case R.id.llMainDrawerSeeOthersLocation:
-              toActivity(SeeOthersLocationActivity.class);
+                toActivity(SeeOthersLocationActivity.class);
                 closeDrawer();
                 break;
             //版本升级
@@ -203,7 +210,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 break;
             //联系我们
             case R.id.llMainDrawerConnectUs:
-             toActivity(AboutOurActivity.class);
+                toActivity(AboutOurActivity.class);
                 closeDrawer();
                 break;
 
@@ -212,15 +219,16 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     public void shareMyLocation() {
         if (weiZhiBeanMain != null) {
-            AndroidShare as = new AndroidShare(
-                    MainActivity.this,
-                    "定位方式" + weiZhiBeanMain.getNetKind()
-                            + "\n\n经度为：" + weiZhiBeanMain.getLongitude()
-                            + "\n\n纬度为：" + weiZhiBeanMain.getLatitude()
-                            + "\n\n定位时间：" + weiZhiBeanMain.getTime()
-                            + "\n\n当前位置为：" + weiZhiBeanMain.getAddress()
-                            + "\n\n 附近标志物：" + weiZhiBeanMain.getLocationDescribe().toString(), "");
+            AndroidShare as = new AndroidShare(MainActivity.this, "定位方式" + weiZhiBeanMain.getNetKind() + "\n\n经度为：" + weiZhiBeanMain.getLongitude() + "\n\n纬度为：" + weiZhiBeanMain.getLatitude() + "\n\n定位时间：" + weiZhiBeanMain.getTime() + "\n\n当前位置为：" + weiZhiBeanMain.getAddress() + "\n\n 附近标志物：" + weiZhiBeanMain.getLocationDescribe().toString(), "");
             as.show();
         }
+    }
+
+    /**
+     * 获取电话号码
+     */
+    public String getNativePhoneNumber() {
+        TelephonyManager telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+        return telephonyManager.getLine1Number();
     }
 }

@@ -21,8 +21,6 @@ import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
 
 public class SeeOthersLocationActivity extends BaseActivity implements View.OnClickListener {
-
-
     @BindView(R.id.edtSeeOthersLocationActivity)
     EditText edtSeeOthersLocationActivity;
     @BindView(R.id.tvSeeOthersLocationActivityChaXun)
@@ -35,9 +33,8 @@ public class SeeOthersLocationActivity extends BaseActivity implements View.OnCl
     ImageView ivSeeOthersLocationActivityBack;
 
     private String edtStringUserID;
-    private long userID;
-    private boolean status;
-    private List<WeiZhiBean> weiZhiBeanList = new ArrayList<>();
+    private String userID;
+    private List<Local> weiZhiBeanList = new ArrayList<>();
     private MyLocationAdapter myLocationAdapter;
 
     @Override
@@ -60,18 +57,18 @@ public class SeeOthersLocationActivity extends BaseActivity implements View.OnCl
                 this.finish();
                 break;
             case R.id.tvSeeOthersLocationActivityChaXun:
-                edtStringUserID = edtSeeOthersLocationActivity.getText().toString().trim();
+                edtStringUserID = "+86"+edtSeeOthersLocationActivity.getText().toString().trim();
                 if (TextUtils.isEmpty(edtStringUserID)){
-                    ToastHelper.showShortMessage("请输入用户ID后再点击查询");
+                    ToastHelper.showShortMessage("请输入用户手机号后再点击查询");
                 }else {
-                    userID = Long.parseLong(edtStringUserID);
+                    userID = edtStringUserID;
 
-                    BmobQuery<WeiZhiBean> query = new BmobQuery<WeiZhiBean>();
+                    BmobQuery<Local> query = new BmobQuery<Local>();
                     query.addWhereEqualTo("userID", userID);
                     query.setLimit(50);
-                    query.findObjects(new FindListener<WeiZhiBean>() {
+                    query.findObjects(new FindListener<Local>() {
                         @Override
-                        public void done(List<WeiZhiBean> list, BmobException e) {
+                        public void done(List<Local> list, BmobException e) {
                             if (e == null) {
                                 if (list.size() > 0) {
                                     weiZhiBeanList.clear();

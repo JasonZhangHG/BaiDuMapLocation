@@ -1,14 +1,11 @@
 package com.example.json.dingwei;
 
 import android.content.Intent;
-import android.os.Handler;
-import android.os.Looper;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.example.json.dingwei.base.BaseActivity;
-import com.example.json.dingwei.constants.ConstKey;
-import com.example.json.dingwei.utils.PreferenceUtil;
+
+import cn.bmob.v3.Bmob;
 
 public class WelcomeActivity extends BaseActivity {
 
@@ -16,10 +13,12 @@ public class WelcomeActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
-        long lastTime = PreferenceUtil.getInstance().getLong(ConstKey.KEY_LAST_LOGIN_TIME);
-        if (lastTime == 0) {
-            toActivity(Login.class);
-        } else {
+        //第一：默认初始化
+        Bmob.initialize(this, "19fb1a7ca34b632c3d283aebc5e14864");
+//        long lastTime = PreferenceUtil.getInstance().getLong(ConstKey.KEY_LAST_LOGIN_TIME);
+//        if (lastTime == 0) {
+//            toActivity(Login.class);
+//        } else {
             doInUI(new Runnable() {
                 @Override
                 public void run() {
@@ -31,4 +30,4 @@ public class WelcomeActivity extends BaseActivity {
         }
 
     }
-}
+//}

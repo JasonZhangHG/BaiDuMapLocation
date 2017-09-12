@@ -1,6 +1,7 @@
 package com.example.json.dingwei;
 
 import android.util.Log;
+
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
 import com.baidu.location.Poi;
@@ -114,24 +115,20 @@ public class MyLocationListener implements BDLocationListener {
 
 
         } else if (location.getLocType() == BDLocation.TypeOffLineLocation) {
-            Log.i("aaa", "4");
             // 离线定位结果
             sb.append("\ndescribe : ");
             sb.append("离线定位成功，离线定位结果也是有效的");
 
         } else if (location.getLocType() == BDLocation.TypeServerError) {
-            Log.i("aaa", "5");
             sb.append("\ndescribe : ");
             sb.append("服务端网络定位失败，可以反馈IMEI号和大体定位时间到loc-bugs@baidu.com，会有人追查原因");
 
 
         } else if (location.getLocType() == BDLocation.TypeNetWorkException) {
-            Log.i("aaa", "6");
             sb.append("\ndescribe : ");
             sb.append("网络不同导致定位失败，请检查网络是否通畅");
 
         } else if (location.getLocType() == BDLocation.TypeCriteriaException) {
-            Log.i("aaa", "7");
             sb.append("\ndescribe : ");
             sb.append("无法获取有效定位依据导致定位失败，一般是由于手机的原因，处于飞行模式下一般会造成这种结果，可以试着重启手机");
         }

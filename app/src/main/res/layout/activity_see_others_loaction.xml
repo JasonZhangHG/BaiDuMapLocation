@@ -37,7 +37,7 @@
                 android:paddingBottom="10dp"
                 android:digits="1234567890"
                 android:singleLine="true"
-                android:hint="请输入要查询的用户的ID"
+                android:hint="请输入要查询的手机号"
                 android:gravity="center"
                 android:textColorHint="@color/yellow87"
                 android:textColor="@color/yellow87" />
