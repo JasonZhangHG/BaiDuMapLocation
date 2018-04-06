@@ -2,6 +2,7 @@ package com.example.json.dingwei.base;
 
 import android.app.Application;
 
+import com.blankj.utilcode.util.Utils;
 import com.example.json.dingwei.utils.PreferenceUtil;
 import com.example.json.dingwei.utils.ToastHelper;
 
@@ -16,5 +17,6 @@ public class BaseApplication  extends Application{
         super.onCreate();
         ToastHelper.init(this);
         PreferenceUtil.initInstance(getApplicationContext(), PreferenceUtil.MODE_ENCRYPT_ALL);
+        Utils.init(getApplicationContext());
     }
 }

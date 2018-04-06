@@ -1,8 +1,11 @@
 package com.example.json.dingwei;
 
+import android.Manifest;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.Toolbar;
 import android.telephony.TelephonyManager;
@@ -17,6 +20,7 @@ import android.widget.Toast;
 import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
 import com.example.json.dingwei.base.BaseActivity;
+import com.example.json.dingwei.utils.ToastHelper;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -53,9 +57,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_drawer_layout);
         ButterKnife.bind(this);
+        Bmob.initialize(this, "19fb1a7ca34b632c3d283aebc5e14864");
         initHeadView();
         //第一：默认初始化
-        Bmob.initialize(this, "19fb1a7ca34b632c3d283aebc5e14864");
         // requestWindowFeature(Window.FEATURE_NO_TITLE);
         EventBus.getDefault().register(this);
         myListener = new MyLocationListener();
@@ -229,6 +233,18 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
      */
     public String getNativePhoneNumber() {
         TelephonyManager telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_SMS) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, "android.permission.READ_PHONE_NUMBERS") != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            ToastHelper.showShortMessage("请先获取SMS的权限");
+            return "请先获取SMS的权限";
+
+        }
         return telephonyManager.getLine1Number();
     }
 }
