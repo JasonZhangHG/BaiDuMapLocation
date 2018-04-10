@@ -4,6 +4,8 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
+    <color name="blue">#3F51B5</color>
+
     <!--不透明度黑白-->
     <color name="white">#FFFFFF</color>
     <color name="white10">#19ffffff</color>
@@ -42,5 +44,28 @@
     <color name="main_activity_drawer_text_color">#FF404040</color>
     <color name="yellow87">#FFffb300</color>
     <color name="holo_blue_light">@android:color/holo_blue_light</color>
+
+    <color name="btn_orange_press">#ff9000</color>
+
+    <color name="green1">#7ac194</color>
+    <color name="green2">#56bc7b</color>
+    <color name="green3">#24a251</color>
+    <color name="green4">#50056f00</color>
+
+    <color name="bg_gray_pressed">#e8e8e8</color>
+    <color name="transparent">#00000000</color>
+    <color name="translucent">#30000000</color>
+    <color name="graya">#aaaaaa</color>
+    <color name="grayc">#cccccc</color>
+    <color name="grayd">#dddddd</color>
+    <color name="graye">#eeeeee</color>
+
+
+    <item name="line_green" type="drawable">#ff3bbd79</item>
+
+    <color name="like">#f50057</color>
+    <color name="feedback_activity_edit_stroke_color">#1f000000</color>
+    <color name="feedback_activity_commit_background_color">#FFDD191D</color>
+    <color name="base_bar_action">#FF4D73FF</color>
 
 </resources>

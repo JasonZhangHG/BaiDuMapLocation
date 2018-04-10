@@ -1,15 +1,16 @@
 package com.example.json.dingwei;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import com.blankj.utilcode.constant.PermissionConstants;
 import com.blankj.utilcode.util.PermissionUtils;
 import com.example.json.dingwei.base.BaseActivity;
+import com.example.json.dingwei.login.LoginActivity;
 
 import java.util.List;
 
 import cn.bmob.v3.Bmob;
+import cn.bmob.v3.BmobUser;
 
 public class WelcomeActivity extends BaseActivity {
 
@@ -53,8 +54,15 @@ public class WelcomeActivity extends BaseActivity {
                                                         .callback(new PermissionUtils.FullCallback() {
                                                             @Override
                                                             public void onGranted(List<String> permissionsGranted) {
-                                                                startActivity(new Intent(WelcomeActivity.this, MainActivity.class));
-                                                                WelcomeActivity.this.finish();
+                                                                BmobUser bmobUser = BmobUser.getCurrentUser();
+                                                                if (bmobUser != null) {
+                                                                    // 允许用户使用应用
+                                                                    toActivity(MainActivity.class);
+                                                                    WelcomeActivity.this.finish();
+                                                                } else {
+                                                                    toActivity(LoginActivity.class);
+                                                                    WelcomeActivity.this.finish();
+                                                                }
                                                             }
 
                                                             @Override

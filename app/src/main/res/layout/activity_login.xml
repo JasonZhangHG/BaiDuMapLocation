@@ -1,52 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:background="@color/yellow87">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="@string/app_name"
-            android:textColor="@color/white"
-            android:textSize="18sp"/>
-    </RelativeLayout>
+    android:background="@color/blue">
 
     <LinearLayout
+        android:id="@+id/llLoginActivityAll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:background="@drawable/white_circle_shape"
+        android:elevation="5dp"
+        android:layout_centerInParent="true"
         android:orientation="vertical"
-        android:paddingTop="100dp">
+        android:padding="16dp"
+        android:visibility="visible">
 
-        <EditText
-            android:id="@+id/edtLoginActivity"
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:digits="1234567890"
-            android:hint="请给自己添加一个用户编号(注：必须为数字)"
-            android:textColorHint="@color/yellow87"
-            android:inputType=""
-            android:paddingLeft="10dp"
-            android:singleLine="true"
-            android:textSize="15sp"/>
+            android:layout_marginTop="16dp">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/editLoginActivityUsrName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="用户名："
+                android:textColorHint="#cccccc"
+                android:textSize="16sp"/>
+
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="16dp">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/editLoginActivityPassWord"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="密码："
+                android:inputType="textPassword"
+                android:textColorHint="#cccccc"
+                android:textSize="16sp"/>
+
+
+        </android.support.design.widget.TextInputLayout>
+
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btnLoginActivityLogin"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/btn_login_sel"
+            android:text="登录"
+            android:textColor="#ffffff"
+            android:textSize="16sp"/>
+
 
         <TextView
-            android:id="@+id/tvLoginActivityLogin"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:background="@drawable/selector_bottom_text_next"
+            android:id="@+id/tvLoginActivityRegister"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_gravity="right"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/bg_transparent2gray_sel"
             android:gravity="center"
-            android:padding="10dp"
-            android:text="登陆"
-            android:textColor="@color/white"/>
+            android:clickable="true"
+            android:text=" 没有账号？点击注册 "
+            android:textColor="#888888"/>
     </LinearLayout>
 
-</LinearLayout>
+</RelativeLayout>
