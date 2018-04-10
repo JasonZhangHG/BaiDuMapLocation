@@ -78,7 +78,7 @@
         android:layout_marginTop="30dp"
         android:gravity="center_horizontal"
         android:marqueeRepeatLimit="marquee_forever"
-        android:text="使用过程中如果想查看云端位置信息或者其他有任何问题可以随时联系我们"
+        android:text="使用过程中如果想查看云端位置信息或者其他有任何问题可以随时联系我们:付彬"
         android:textColor="#ffff"
         android:textSize="15sp"
         android:textStyle="bold" />
@@ -88,20 +88,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:gravity="center_horizontal"
-        android:text="QQ:2281234263"
+        android:text="TEL:18800150511"
         android:textColor="#ffff"
         android:textSize="15sp"
         android:textStyle="bold" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:gravity="center_horizontal"
-        android:text="实时定位系统QQ群: 652594747"
-        android:textColor="#ffff"
-        android:textSize="15sp"
-        android:textStyle="bold" />
 
 
     <TextView
@@ -109,7 +100,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:gravity="center_horizontal"
-        android:text="邮箱:2281234263@qq.com"
+        android:text="邮箱:18800150511@163.com"
         android:textColor="#ffff"
         android:textSize="15sp"
         android:textStyle="bold" />
