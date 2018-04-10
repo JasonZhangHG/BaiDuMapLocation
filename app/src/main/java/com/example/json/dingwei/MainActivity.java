@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
 import com.example.json.dingwei.base.BaseActivity;
+import com.example.json.dingwei.login.LoginActivity;
 import com.example.json.dingwei.utils.ToastHelper;
 
 import org.greenrobot.eventbus.EventBus;
@@ -210,12 +211,16 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 break;
             //版本升级
             case R.id.llMainDrawerUpdateVersion:
-
+                toActivity(LoginActivity.class);
+                closeDrawer();
+                finish();
                 break;
             //联系我们
             case R.id.llMainDrawerConnectUs:
                 toActivity(AboutOurActivity.class);
                 closeDrawer();
+                break;
+            default:
                 break;
 
         }
