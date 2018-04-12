@@ -3,8 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    android:background="@mipmap/bg">
+    android:background="@mipmap/bg"
+    android:fitsSystemWindows="true">
 
     <LinearLayout
         android:id="@+id/llMainActivitySend"
@@ -12,6 +12,7 @@
         android:layout_height="56dp"
         android:layout_marginTop="32dp"
         android:orientation="horizontal">
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -20,41 +21,42 @@
                 android:id="@+id/ivSeeOthersLocationActivityBack"
                 android:layout_width="56dp"
                 android:layout_height="56dp"
-                android:src="@mipmap/icon_back"
-                android:padding="16dp"
                 android:clickable="true"
-                android:scaleType="fitXY" />
+                android:padding="16dp"
+                android:scaleType="fitXY"
+                android:src="@mipmap/icon_back"/>
+
             <EditText
                 android:id="@+id/edtSeeOthersLocationActivity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="60dp"
                 android:layout_marginRight="90dp"
-                android:textSize="14sp"
-                android:background="@drawable/search_bg"
                 android:layout_marginTop="10dp"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
+                android:background="@drawable/search_bg"
                 android:digits="1234567890"
-                android:singleLine="true"
-                android:hint="请输入要查询的手机号"
                 android:gravity="center"
+                android:hint="请输入要查询的手机号"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:singleLine="true"
+                android:textColor="@color/yellow87"
                 android:textColorHint="@color/yellow87"
-                android:textColor="@color/yellow87" />
+                android:textSize="14sp"/>
 
             <TextView
                 android:id="@+id/tvSeeOthersLocationActivityChaXun"
                 android:layout_width="56dp"
                 android:layout_height="32dp"
-                android:text="查询"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="16dp"
                 android:layout_marginTop="13dp"
-                android:textSize="14sp"
+                android:background="@color/yellow87"
                 android:clickable="true"
                 android:gravity="center"
-                android:background="@color/yellow87"
-                android:textColor="@color/white" />
+                android:text="查询"
+                android:textColor="@color/white"
+                android:textSize="14sp"/>
         </RelativeLayout>
     </LinearLayout>
 
@@ -62,10 +64,22 @@
         android:id="@+id/lvSeeOthersLocationActivityResult"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="10dp"
-        android:layout_below="@id/llMainActivitySend">
+        android:layout_below="@id/llMainActivitySend"
+        android:layout_marginTop="10dp">
 
     </ListView>
 
+    <ImageView
+        android:id="@+id/iv_share_share_activity"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="20dp"
+        android:layout_marginRight="26dp"
+        android:padding="10dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/share_my_location"/>
 
 </RelativeLayout>

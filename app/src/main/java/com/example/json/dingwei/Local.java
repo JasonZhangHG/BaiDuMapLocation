@@ -74,6 +74,6 @@ public class Local extends BmobObject {
 
     @Override
     public String toString() {
-        return "Local{" + "userID='" + userID + '\'' + ", netKind='" + netKind + '\'' + ", time='" + time + '\'' + ", address='" + address + '\'' + ", locationDescribe='" + locationDescribe + '\'' + ", longitude=" + longitude + ", latitude=" + latitude + '}';
+        return "定位方式：" + netKind + '\'' + ", 定位时间： '" + time + '\'' + ", address='" + address + '\'' + ", locationDescribe='" + locationDescribe + '\'' + ", longitude=" + longitude + ", latitude=" + latitude + '}';
     }
 }

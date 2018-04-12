@@ -9,8 +9,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+
 import com.example.json.dingwei.base.BaseActivity;
 import com.example.json.dingwei.utils.ToastHelper;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,6 +33,7 @@ public class SeeOthersLocationActivity extends BaseActivity implements View.OnCl
     ListView lvSeeOthersLocationActivityResult;
     @BindView(R.id.ivSeeOthersLocationActivityBack)
     ImageView ivSeeOthersLocationActivityBack;
+    @BindView(R.id.iv_share_share_activity) ImageView ivShareShareActivity;
 
     private String edtStringUserID;
     private String userID;
@@ -46,21 +49,22 @@ public class SeeOthersLocationActivity extends BaseActivity implements View.OnCl
 
         ivSeeOthersLocationActivityBack.setOnClickListener(this);
         tvSeeOthersLocationActivityChaXun.setOnClickListener(this);
+        ivShareShareActivity.setOnClickListener(this);
 
     }
 
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.ivSeeOthersLocationActivityBack:
                 this.finish();
                 break;
             case R.id.tvSeeOthersLocationActivityChaXun:
-                edtStringUserID = "+86"+edtSeeOthersLocationActivity.getText().toString().trim();
-                if (TextUtils.isEmpty(edtStringUserID)){
+                edtStringUserID = "+86" + edtSeeOthersLocationActivity.getText().toString().trim();
+                if (TextUtils.isEmpty(edtStringUserID)) {
                     ToastHelper.showShortMessage("请输入用户手机号后再点击查询");
-                }else {
+                } else {
                     userID = edtStringUserID;
 
                     BmobQuery<Local> query = new BmobQuery<Local>();
@@ -73,19 +77,33 @@ public class SeeOthersLocationActivity extends BaseActivity implements View.OnCl
                                 if (list.size() > 0) {
                                     weiZhiBeanList.clear();
                                     weiZhiBeanList = list;
-                                    myLocationAdapter = new MyLocationAdapter(weiZhiBeanList,SeeOthersLocationActivity.this);
+                                    myLocationAdapter = new MyLocationAdapter(weiZhiBeanList, SeeOthersLocationActivity.this);
                                     lvSeeOthersLocationActivityResult.setAdapter(myLocationAdapter);
                                 } else {
                                     ToastHelper.showShortMessage("云服务器未存储该用户的位置信息");
                                 }
 
                             } else {
-                                 ToastHelper.showShortMessage("查询失败");
+                                ToastHelper.showShortMessage("查询失败");
                             }
                         }
                     });
                 }
                 break;
+            case R.id.iv_share_share_activity:
+                shareMyLocation();
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void shareMyLocation() {
+        if (weiZhiBeanList != null && weiZhiBeanList.size() > 0) {
+            AndroidShare as = new AndroidShare(this, "查询的手机号码为：" + edtSeeOthersLocationActivity.getText().toString().trim() + "\n\n该手机号码的位置为： ：" + weiZhiBeanList.toString(), "");
+            as.show();
+        }else {
+            ToastHelper.showShortMessage("没有位置信息，无法分享");
         }
     }
 }
