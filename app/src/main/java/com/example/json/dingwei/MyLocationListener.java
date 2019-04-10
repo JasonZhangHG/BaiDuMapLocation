@@ -1,10 +1,9 @@
 package com.example.json.dingwei;
 
-import android.util.Log;
-
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
 import com.baidu.location.Poi;
+import com.baidu.mapapi.map.MyLocationData;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -15,14 +14,17 @@ import java.util.List;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.SaveListener;
 
-/**
- * Created by Json on 2017/6/21.
- */
-
 public class MyLocationListener implements BDLocationListener {
 
     @Override
     public void onReceiveLocation(BDLocation location) {
+        if (location == null) { return; }
+        MyLocationData locData = new MyLocationData.Builder()
+                .accuracy(location.getRadius())
+                // 此处设置开发者获取到的方向信息，顺时针0-360
+                .direction(location.getDirection()).latitude(location.getLatitude())
+                .longitude(location.getLongitude()).build();
+        EventBus.getDefault().post(locData);
 
         StringBuffer sb = new StringBuffer(256);
 
@@ -72,7 +74,7 @@ public class MyLocationListener implements BDLocationListener {
             weiZhiBean.setLatitude(location.getLatitude());
             weiZhiBean.setLongitude(location.getLongitude());
 
-            EventBus.getDefault().post(weiZhiBean);
+            EventBus.getDefault().post(weiZhiBean); /*事件传递给mainactivity*/
 
             weiZhiBean.save(new SaveListener<String>() {
                 @Override
@@ -121,7 +123,7 @@ public class MyLocationListener implements BDLocationListener {
 
         } else if (location.getLocType() == BDLocation.TypeServerError) {
             sb.append("\ndescribe : ");
-            sb.append("服务端网络定位失败，可以反馈IMEI号和大体定位时间到loc-bugs@baidu.com，会有人追查原因");
+            sb.append("服务端网络定位失败");
 
 
         } else if (location.getLocType() == BDLocation.TypeNetWorkException) {
@@ -130,7 +132,7 @@ public class MyLocationListener implements BDLocationListener {
 
         } else if (location.getLocType() == BDLocation.TypeCriteriaException) {
             sb.append("\ndescribe : ");
-            sb.append("无法获取有效定位依据导致定位失败，一般是由于手机的原因，处于飞行模式下一般会造成这种结果，可以试着重启手机");
+            sb.append("无法获取有效定位依据导致定位失败");
         }
 
         sb.append("\nlocationdescribe : ");
@@ -155,8 +157,5 @@ public class MyLocationListener implements BDLocationListener {
         return time;
     }
 
-    @Override
-    public void onConnectHotSpotMessage(String s, int i) {
-    }
 }
 

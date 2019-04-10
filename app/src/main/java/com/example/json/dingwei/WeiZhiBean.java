@@ -3,9 +3,6 @@ package com.example.json.dingwei;
 
 import cn.bmob.v3.BmobObject;
 
-/**
- * Created by Json on 2017/6/21.
- */
 
 public class WeiZhiBean extends BmobObject {
 

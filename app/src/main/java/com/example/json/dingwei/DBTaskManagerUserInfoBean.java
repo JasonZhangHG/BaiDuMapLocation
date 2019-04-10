@@ -2,10 +2,7 @@ package com.example.json.dingwei;
 
 import cn.bmob.v3.BmobUser;
 
-/**
- * Created by jason on 2018/1/19.
- */
-public class DBTaskManagerUserInfoBean extends BmobUser {
+public class DBTaskManagerUserInfoBean extends BmobUser {/*用户信息*/
 
     public long creatTimeAsId;//录入的具体数据的时间作为ID
     public String name;

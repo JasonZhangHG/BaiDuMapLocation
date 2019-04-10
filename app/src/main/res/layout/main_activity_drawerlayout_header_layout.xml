@@ -16,7 +16,7 @@
                 android:id="@+id/flMainDrawerUser"
                 android:layout_width="match_parent"
                 android:layout_height="172dp"
-                android:background="@mipmap/left_drawer_bg"
+                android:background="@mipmap/left_drawer_bg1"
                 android:orientation="vertical">
             </FrameLayout>
 
@@ -116,7 +116,43 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="56dp"
                         android:layout_marginTop="3dp"
-                        android:text="联系我们"/>
+                        android:text="关于本应用"/>
+
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llMainDrawerMap"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:orientation="horizontal"
+                android:paddingBottom="16dp"
+                android:paddingLeft="18dp"
+                android:paddingTop="16dp"
+                android:visibility="visible">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/icon_location_unpress"/>
+
+                    <TextView
+                        style="@style/MainDrawItemNickNameTextStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="56dp"
+                        android:layout_marginTop="3dp"
+                        android:text="地图"/>
 
                 </RelativeLayout>
             </LinearLayout>
@@ -154,7 +190,6 @@
 
                 </RelativeLayout>
             </LinearLayout>
-
 
 
         </LinearLayout>

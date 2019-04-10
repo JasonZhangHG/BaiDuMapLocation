@@ -78,7 +78,7 @@
         android:layout_marginTop="30dp"
         android:gravity="center_horizontal"
         android:marqueeRepeatLimit="marquee_forever"
-        android:text="使用过程中如果想查看云端位置信息或者其他有任何问题可以随时联系我们:付彬"
+        android:text="使用过程中如果想查看云端位置信息或者其他有任何问题可以随时联系我"
         android:textColor="#ffff"
         android:textSize="15sp"
         android:textStyle="bold" />
@@ -88,7 +88,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:gravity="center_horizontal"
-        android:text="TEL:18800150511"
+        android:text="联系人：江乾宇"
         android:textColor="#ffff"
         android:textSize="15sp"
         android:textStyle="bold" />
@@ -100,7 +100,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:gravity="center_horizontal"
-        android:text="邮箱:18800150511@163.com"
+        android:text="QQ294774222,TEL：18934773904"
         android:textColor="#ffff"
         android:textSize="15sp"
         android:textStyle="bold" />
@@ -109,11 +109,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="32dp"
-        android:layout_marginRight="32dp"
         android:layout_marginTop="30dp"
+        android:layout_marginRight="32dp"
         android:gravity="center_horizontal"
         android:marqueeRepeatLimit="marquee_forever"
-        android:text="非常期待大家能够提供建议，我们定会虚心采纳，及时修改实时定位系统，让我们的实时定位系统做的更好，能够更好的服务于大家，方便大家，再次感谢！！！！"
+        android:text="非常期待大家能够提供建议，让我的位置分享系统做的更好，能够更好的服务于大家，方便大家，再次感谢！！！！"
         android:textColor="#ffff"
         android:textSize="15sp"
         android:textStyle="bold" />

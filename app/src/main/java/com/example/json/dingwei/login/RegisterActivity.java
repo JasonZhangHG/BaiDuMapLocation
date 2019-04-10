@@ -18,7 +18,7 @@ import cn.bmob.v3.Bmob;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.SaveListener;
 
-
+//注册
 public class RegisterActivity extends AppCompatActivity {
 
     @BindView(R.id.tvRegisterActivityTitle)
@@ -46,7 +46,7 @@ public class RegisterActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Bmob.initialize(this, "19fb1a7ca34b632c3d283aebc5e14864");
+        Bmob.initialize(this, "db204405c95a2dc850f65e78c6ec9457");
         setContentView(R.layout.activity_regiest);
         ButterKnife.bind(this);
         btnRegisterActivitySubmit.setOnClickListener(new View.OnClickListener() {
@@ -66,7 +66,7 @@ public class RegisterActivity extends AppCompatActivity {
         String tellPhone = edtRegisterActivityTel.getText().toString();
         String mail = edtRegisterActivityMail.getText().toString();
         if (TextUtils.isEmpty(userName) || TextUtils.isEmpty(passWord1) || TextUtils.isEmpty(passWord2) || TextUtils.isEmpty(name) || TextUtils.isEmpty(old) || TextUtils.isEmpty(tellPhone) || TextUtils.isEmpty(mail)) {
-            Toast.makeText(RegisterActivity.this, "请输入完整信息后再注册", Toast.LENGTH_SHORT).show();
+                Toast.makeText(RegisterActivity.this, "请输入完整信息后再注册", Toast.LENGTH_SHORT).show();
         } else {
             if (passWord1.equals(passWord2)) {
                 final DBTaskManagerUserInfoBean dbUserInfoBean = new DBTaskManagerUserInfoBean();
@@ -97,7 +97,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     public long getTime() {
-        return System.currentTimeMillis();//获取系统时间戳
+        return System.currentTimeMillis();//获取系统时间戳，作为用户ID
     }
 
 }

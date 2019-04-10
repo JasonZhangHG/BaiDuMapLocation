@@ -61,14 +61,13 @@ public class SeeOthersLocationActivity extends BaseActivity implements View.OnCl
                 this.finish();
                 break;
             case R.id.tvSeeOthersLocationActivityChaXun:
-                edtStringUserID = "+86" + edtSeeOthersLocationActivity.getText().toString().trim();
+                edtStringUserID = edtSeeOthersLocationActivity.getText().toString();
                 if (TextUtils.isEmpty(edtStringUserID)) {
                     ToastHelper.showShortMessage("请输入用户手机号后再点击查询");
                 } else {
                     userID = edtStringUserID;
-
                     BmobQuery<Local> query = new BmobQuery<Local>();
-                    query.addWhereEqualTo("userID", userID);
+                    query.addWhereEqualTo("phoneNumber", edtStringUserID);
                     query.setLimit(50);
                     query.findObjects(new FindListener<Local>() {
                         @Override
@@ -98,11 +97,11 @@ public class SeeOthersLocationActivity extends BaseActivity implements View.OnCl
         }
     }
 
-    public void shareMyLocation() {
+    public void shareMyLocation() { /*分享查询到的用户信息*/
         if (weiZhiBeanList != null && weiZhiBeanList.size() > 0) {
             AndroidShare as = new AndroidShare(this, "查询的手机号码为：" + edtSeeOthersLocationActivity.getText().toString().trim() + "\n\n该手机号码的位置为： ：" + weiZhiBeanList.toString(), "");
             as.show();
-        }else {
+        } else {
             ToastHelper.showShortMessage("没有位置信息，无法分享");
         }
     }

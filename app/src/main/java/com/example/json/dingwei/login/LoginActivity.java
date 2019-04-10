@@ -42,19 +42,19 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
-        Bmob.initialize(this, "19fb1a7ca34b632c3d283aebc5e14864");
+        Bmob.initialize(this, "db204405c95a2dc850f65e78c6ec9457");
 
         btnLoginActivityLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setLoginOnclick();
+                setLoginOnclick();  /* 64*/
             }
         });
 
         tvLoginActivityRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class); /*跳转界面*/
                 startActivity(intent);
             }
         });
@@ -64,14 +64,14 @@ public class LoginActivity extends AppCompatActivity {
     public void setLoginOnclick() {
         String username = editLoginActivityUsrName.getText().toString();
         String password = editLoginActivityPassWord.getText().toString();
-        if (!TextUtils.isEmpty(username) && !TextUtils.isEmpty(password)) {
+        if (!TextUtils.isEmpty(username) && !TextUtils.isEmpty(password)) { /* 判断是否为空*/
             BmobUser userInfoBean = new BmobUser();
             userInfoBean.setUsername(username);
             userInfoBean.setPassword(password);
             userInfoBean.login(new SaveListener<BmobUser>() {
                 @Override
                 public void done(BmobUser userInfoBean, BmobException e) {
-                    if (e == null) {
+                    if (e == null) { /*是否异常*/
                         BmobUser currentUser = BmobUser.getCurrentUser(BmobUser.class);
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                         startActivity(intent);

@@ -1,4 +1,5 @@
 package com.example.json.dingwei;
+/*封装位置分享*/
 
 import android.app.Dialog;
 import android.content.ComponentName;
@@ -57,7 +58,7 @@ public class AndroidShare extends Dialog implements AdapterView.OnItemClickListe
 				mScreenOrientation = orient;
 				((MyAdapter) mGridView.getAdapter()).notifyDataSetChanged();
 			}
-			mHandler.postDelayed(this, 1000L);
+					mHandler.postDelayed(this, 1000L);
 		}
 	};
 

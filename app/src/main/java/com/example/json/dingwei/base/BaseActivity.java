@@ -15,9 +15,6 @@ import android.view.WindowManager;
 
 import cn.bmob.v3.Bmob;
 
-/**
- * Created by Json on 2017/7/3.
- */
 
 public class BaseActivity  extends AppCompatActivity{
 
@@ -27,7 +24,7 @@ public class BaseActivity  extends AppCompatActivity{
     public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
         super.onCreate(savedInstanceState, persistentState);
         //第一：默认初始化
-        Bmob.initialize(this, "cab28c292ccada5f6a9740d5cdb32f77");
+        Bmob.initialize(this, "db204405c95a2dc850f65e78c6ec9457");
     }
 
     public Handler getHandler(){

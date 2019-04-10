@@ -12,15 +12,16 @@ import java.util.List;
 import cn.bmob.v3.Bmob;
 import cn.bmob.v3.BmobUser;
 
+//欢迎界面  第一个界面
 public class WelcomeActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
-        //第一：默认初始化
-        Bmob.initialize(this, "19fb1a7ca34b632c3d283aebc5e14864");
-        PermissionUtils.permission(PermissionConstants.LOCATION)
+        //默认初始化
+        Bmob.initialize(this, "db204405c95a2dc850f65e78c6ec9457");
+        PermissionUtils.permission(PermissionConstants.LOCATION, PermissionConstants.STORAGE, PermissionConstants.SMS)
                 .rationale(new PermissionUtils.OnRationaleListener() {
                     @Override
                     public void rationale(final ShouldRequest shouldRequest) {
@@ -30,62 +31,16 @@ public class WelcomeActivity extends BaseActivity {
                 .callback(new PermissionUtils.FullCallback() {
                     @Override
                     public void onGranted(List<String> permissionsGranted) {
-                        doInUI(new Runnable() {
-                            @Override
-                            public void run() {
-
-                                PermissionUtils.permission(PermissionConstants.STORAGE)
-                                        .rationale(new PermissionUtils.OnRationaleListener() {
-                                            @Override
-                                            public void rationale(final ShouldRequest shouldRequest) {
-                                                shouldRequest.again(true);
-                                            }
-                                        })
-                                        .callback(new PermissionUtils.FullCallback() {
-                                            @Override
-                                            public void onGranted(List<String> permissionsGranted) {
-                                                PermissionUtils.permission(PermissionConstants.SMS)
-                                                        .rationale(new PermissionUtils.OnRationaleListener() {
-                                                            @Override
-                                                            public void rationale(final ShouldRequest shouldRequest) {
-                                                                shouldRequest.again(true);
-                                                            }
-                                                        })
-                                                        .callback(new PermissionUtils.FullCallback() {
-                                                            @Override
-                                                            public void onGranted(List<String> permissionsGranted) {
-                                                                BmobUser bmobUser = BmobUser.getCurrentUser();
-                                                                if (bmobUser != null) {
-                                                                    // 允许用户使用应用
-                                                                    toActivity(MainActivity.class);
-                                                                    WelcomeActivity.this.finish();
-                                                                } else {
-                                                                    toActivity(LoginActivity.class);
-                                                                    WelcomeActivity.this.finish();
-                                                                }
-                                                            }
-
-                                                            @Override
-                                                            public void onDenied(List<String> permissionsDeniedForever,
-                                                                                 List<String> permissionsDenied) {
-                                                                if (!permissionsDeniedForever.isEmpty()) {
-                                                                    PermissionUtils.launchAppDetailsSettings();
-                                                                }
-                                                            }
-                                                        }).request();
-                                            }
-
-                                            @Override
-                                            public void onDenied(List<String> permissionsDeniedForever,
-                                                                 List<String> permissionsDenied) {
-                                                if (!permissionsDeniedForever.isEmpty()) {
-                                                    PermissionUtils.launchAppDetailsSettings();
-                                                }
-                                            }
-                                        }).request();
-
-                            }
-                        }, 100);
+                        BmobUser bmobUser = BmobUser.getCurrentUser(); /*获取当前user 登录界面*/
+                        if (bmobUser != null) {
+                            // 允许用户使用应用，跳转至登录或者主界面
+                            toActivity(MainActivity.class);
+                            WelcomeActivity.this.finish();
+                        } else {
+                            toActivity(LoginActivity.class);
+                            WelcomeActivity.this.finish();
+                        }
+                        finish();
                     }
 
                     @Override
@@ -98,6 +53,5 @@ public class WelcomeActivity extends BaseActivity {
                 }).request();
 
     }
-
 }
 

@@ -2,11 +2,8 @@ package com.example.json.dingwei;
 
 import cn.bmob.v3.BmobObject;
 
-/**
- * Created by ZhangHaiLong on 2017/9/12.
- */
 
-public class Local extends BmobObject {
+public class Local extends BmobObject {  //位置信息对象
 
     private String userID;//用户ID
     private String netKind;//获取定位的方式
@@ -15,6 +12,7 @@ public class Local extends BmobObject {
     private String locationDescribe;//附近标志建筑物
     private double longitude;//获取经度信息
     private double latitude;//获取纬度信息
+    private String phoneNumber;//手机号
 
     public String getUserID() {
         return userID;
@@ -72,8 +70,25 @@ public class Local extends BmobObject {
         this.latitude = latitude;
     }
 
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
     @Override
     public String toString() {
-        return "定位方式：" + netKind + '\'' + ", 定位时间： '" + time + '\'' + ", address='" + address + '\'' + ", locationDescribe='" + locationDescribe + '\'' + ", longitude=" + longitude + ", latitude=" + latitude + '}';
+        return "Local{" +
+                "userID='" + userID + '\'' +
+                ", netKind='" + netKind + '\'' +
+                ", time='" + time + '\'' +
+                ", address='" + address + '\'' +
+                ", locationDescribe='" + locationDescribe + '\'' +
+                ", longitude=" + longitude +
+                ", latitude=" + latitude +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                '}';
     }
 }
